@@ -1,0 +1,247 @@
+/* ============================================================
+   BahnVerwaltung – Global Theme
+   Datei: src/main/frontend/themes/myproject/styles.css
+   ============================================================ */
+
+/* ---------- Design Tokens ---------- */
+html {
+    --bahn-red:      #C0392B;
+    --bahn-red-dark: #962d22;
+    --bahn-red-soft: #fdf2f1;
+    --slate-900:     #1a1f2e;
+    --slate-700:     #3d4560;
+    --slate-400:     #8892aa;
+    --slate-100:     #f4f5f8;
+    --white:         #ffffff;
+    --success:       #1e8a5e;
+    --radius-sm:     6px;
+    --radius-md:     10px;
+    --radius-lg:     16px;
+    --shadow-sm:     0 1px 4px rgba(0,0,0,.08);
+    --shadow-md:     0 4px 16px rgba(0,0,0,.10);
+    --font-main:     'Inter', system-ui, sans-serif;
+}
+
+/* ---------- App Shell ---------- */
+body {
+    font-family: var(--font-main);
+    background: var(--slate-100);
+    color: var(--slate-900);
+}
+
+/* ---------- Sidebar / Drawer ---------- */
+vaadin-app-layout::part(drawer) {
+    background: var(--slate-900);
+    border-right: none;
+    box-shadow: 2px 0 20px rgba(0,0,0,.18);
+}
+
+/* App name */
+vaadin-drawer-toggle,
+vaadin-app-layout [slot="navbar"] h1 {
+    color: var(--white) !important;
+}
+
+/* Nav items */
+vaadin-side-nav-item {
+    --vaadin-side-nav-item-color: var(--slate-400);
+    --vaadin-side-nav-item-hover-color: var(--white);
+    --vaadin-side-nav-item-active-color: var(--white);
+    border-radius: var(--radius-sm);
+    margin: 2px 8px;
+    transition: background .15s;
+}
+
+vaadin-side-nav-item[active] {
+    background: var(--bahn-red) !important;
+    --vaadin-side-nav-item-color: var(--white);
+}
+
+vaadin-side-nav-item:hover:not([active]) {
+    background: rgba(255,255,255,.08);
+}
+
+/* "MyProject" title in sidebar */
+vaadin-app-layout [slot="drawer"] h2,
+vaadin-app-layout [slot="drawer"] span {
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* ---------- Top Navbar ---------- */
+vaadin-app-layout::part(navbar) {
+    background: var(--white);
+    border-bottom: 1px solid #e8eaf0;
+    box-shadow: var(--shadow-sm);
+}
+
+/* ---------- Content area ---------- */
+vaadin-app-layout::part(content) {
+    background: var(--slate-100);
+    padding: 32px;
+}
+
+/* ---------- Page Headings ---------- */
+h1.bahn-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--slate-900);
+    letter-spacing: -1px;
+    margin: 0 0 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+h1.bahn-title::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 32px;
+    background: var(--bahn-red);
+    border-radius: 3px;
+}
+
+/* ---------- Cards (VerticalLayout wrapper) ---------- */
+.bahn-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: 28px 32px;
+    border: 1px solid #e8eaf0;
+}
+
+/* ---------- Grid / Table ---------- */
+vaadin-grid {
+    border-radius: var(--radius-md);
+    border: 1px solid #e8eaf0;
+    box-shadow: var(--shadow-sm);
+    background: var(--white);
+}
+
+vaadin-grid::part(header-cell) {
+    background: var(--slate-900);
+    color: var(--white);
+    font-weight: 600;
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+vaadin-grid::part(row):hover {
+    background: var(--bahn-red-soft);
+}
+
+vaadin-grid::part(selected-row) {
+    background: #fcecea;
+}
+
+/* ---------- Buttons ---------- */
+vaadin-button {
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: .875rem;
+    cursor: pointer;
+    transition: all .15s;
+}
+
+/* Primary – rot */
+vaadin-button.btn-primary {
+    background: var(--bahn-red);
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    box-shadow: 0 2px 8px rgba(192,57,43,.3);
+}
+
+vaadin-button.btn-primary:hover {
+    background: var(--bahn-red-dark);
+    box-shadow: 0 4px 12px rgba(192,57,43,.4);
+    transform: translateY(-1px);
+}
+
+/* Secondary – outline */
+vaadin-button.btn-secondary {
+    background: transparent;
+    color: var(--slate-700);
+    border: 1.5px solid #d0d4e0;
+    padding: 9px 18px;
+}
+
+vaadin-button.btn-secondary:hover {
+    border-color: var(--bahn-red);
+    color: var(--bahn-red);
+}
+
+/* Danger */
+vaadin-button.btn-danger {
+    background: transparent;
+    color: var(--bahn-red);
+    border: 1.5px solid var(--bahn-red);
+    padding: 9px 18px;
+}
+
+vaadin-button.btn-danger:hover {
+    background: var(--bahn-red);
+    color: var(--white);
+}
+
+/* ---------- Text Fields ---------- */
+vaadin-text-field {
+    width: 100%;
+}
+
+vaadin-text-field::part(input-field) {
+    border-radius: var(--radius-sm);
+    border: 1.5px solid #d0d4e0;
+    background: var(--white);
+    transition: border-color .15s, box-shadow .15s;
+}
+
+vaadin-text-field:focus-within::part(input-field) {
+    border-color: var(--bahn-red);
+    box-shadow: 0 0 0 3px rgba(192,57,43,.12);
+}
+
+/* ---------- Stat Cards ---------- */
+.stat-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    border: 1px solid #e8eaf0;
+    border-left: 4px solid var(--bahn-red);
+    padding: 20px 24px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 180px;
+}
+
+.stat-label {
+    font-size: .78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--slate-400);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--slate-900);
+    line-height: 1;
+}
+
+/* ---------- Notifications ---------- */
+vaadin-notification-container {
+    --vaadin-notification-background: var(--slate-900);
+    --vaadin-notification-color: var(--white);
+}
+
+/* ---------- Utility ---------- */
+.gap-sm  { gap: 8px; }
+.gap-md  { gap: 16px; }
+.gap-lg  { gap: 24px; }
+.mt-md   { margin-top: 16px; }
+.mt-lg   { margin-top: 24px; }
